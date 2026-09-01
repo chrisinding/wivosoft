@@ -404,7 +404,7 @@ function ModernApplication() {
       </aside>
       <div className="modern-content">
         <div className="modern-appbar">
-          <div className="modern-app-identity"><small>NORDIC SERVICE ADMINISTRATION</small><b>Equipment</b></div>
+          <div className="modern-app-identity"><small>NORDIC SERVICE ADMINISTRATION</small><b>Customer &amp; Equipment</b></div>
           <div className="modern-search" aria-hidden="true"><span>⌕</span><span>Search equipment</span></div>
         </div>
 
@@ -413,8 +413,11 @@ function ModernApplication() {
             <div className="modern-command-actions">
               <span className="primary">＋<small>New</small></span>
               <span>▤<small>Open</small></span>
+              <span>↓<small>Save</small></span>
               <span>⎙<small>Print</small></span>
+              <span>⌕<small>Search</small></span>
               <span>↻<small>Refresh</small></span>
+              <span>×<small>Close</small></span>
             </div>
             <span className="modern-record-context">Equipment record · <code>XR-442</code></span>
           </div>
@@ -450,7 +453,7 @@ function ModernApplication() {
                     <td><code>{record.type}</code></td>
                     <td><b>{record.event}</b></td>
                     <td><code>{record.reference}</code></td>
-                    <td><span className="completed-status"><i /> Completed <small>CODE C</small></span></td>
+                    <td><span className="completed-status"><i /> Done <small>C</small></span></td>
                   </tr>
                 ))}
               </tbody>
