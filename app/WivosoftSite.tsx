@@ -404,31 +404,77 @@ function ModernApplication() {
       </aside>
       <div className="modern-content">
         <div className="modern-appbar">
-          <div><small>NORDIC SERVICE ADMINISTRATION</small><b>Equipment</b></div>
-            <div className="modern-search" aria-hidden="true"><span>⌕</span><span>Search equipment</span></div>
+          <div className="modern-app-identity"><small>NORDIC SERVICE ADMINISTRATION</small><b>Equipment</b></div>
+          <div className="modern-search" aria-hidden="true"><span>⌕</span><span>Search equipment</span></div>
         </div>
-        <div className="modern-heading">
-          <div><small>EQUIPMENT / XR-442</small><h3>Industrial Pump XR-442</h3><p>Nordic Pumps A/S <span>·</span> Customer no. 10442</p></div>
-          <span className="active-badge"><i /> Active <small>CODE A</small></span>
-        </div>
-        <div className="modern-facts">
-          <div><small>Customer</small><b>Nordic Pumps A/S</b><span>10442</span></div>
-          <div><small>Equipment</small><b>Industrial Pump XR-442</b><span>XR-442 · SITE CPH-04</span></div>
-          <div><small>Latest service</small><b>Annual service</b><span>2025-04-09</span></div>
-        </div>
-        <div className="modern-history">
-          <div className="modern-history-title"><div><small>SERVICE HISTORY</small><b>4 completed records</b></div><span className="modern-filter" aria-hidden="true">Filter&nbsp; ▾</span></div>
-          <div className="modern-timeline">
-            {serviceHistory.map((record) => (
-              <div key={record.date}>
-                <span className="timeline-dot">✓</span>
-                <div><b>{record.event}</b><small>{record.type} · {record.reference} · STATUS C</small></div>
-                <time>{record.date}</time>
-              </div>
-            ))}
+
+        <div className="modern-desktop-layout">
+          <div className="modern-ops-head">
+            <div>
+              <small>EQUIPMENT / XR-442</small>
+              <h3>Industrial Pump XR-442</h3>
+              <p>Nordic Pumps A/S <span>·</span> Customer no. 10442</p>
+            </div>
+            <div className="modern-ops-status">
+              <span className="active-badge"><i /> Active <small>CODE A</small></span>
+              <div className="modern-latest"><small>LATEST SERVICE</small><b>Annual service</b><time dateTime="2025-04-09">2025-04-09</time></div>
+            </div>
           </div>
+
+          <dl className="modern-summary" aria-label="Equipment summary">
+            <div className="summary-customer"><dt>Customer</dt><dd>Nordic Pumps A/S <small>10442</small></dd></div>
+            <div className="summary-equipment"><dt>Equipment</dt><dd>Industrial Pump XR-442 <small>XR-442</small></dd></div>
+            <div className="summary-site"><dt>Site</dt><dd>CPH-04</dd></div>
+            <div className="summary-status"><dt>Status</dt><dd><i /> Active <small>Code A</small></dd></div>
+            <div className="summary-service"><dt>Latest service</dt><dd>Annual service <small>2025-04-09</small></dd></div>
+          </dl>
+
+          <div className="modern-history modern-history-desktop">
+            <div className="modern-history-title">
+              <div><small>SERVICE HISTORY</small><b>4 completed records</b></div>
+              <div className="modern-history-tools" aria-hidden="true"><span>⌕&nbsp; Search history</span><span>All records&nbsp; ▾</span></div>
+            </div>
+            <table className="modern-history-table">
+              <thead><tr><th>Date</th><th>Service</th><th>Reference</th><th>Status</th></tr></thead>
+              <tbody>
+                {serviceHistory.map((record) => (
+                  <tr key={record.date}>
+                    <td><time dateTime={record.date}>{record.date}</time></td>
+                    <td><b>{record.event}</b><small>{record.type}</small></td>
+                    <td><code>{record.reference}</code></td>
+                    <td><span className="completed-status"><i /> Completed <small>CODE C</small></span></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="preservation-note preservation-note-compact"><span>✓</span><div><b>10 years of service history preserved</b><small>Archive coverage 2015–2025 · 4 of 4 displayed records reconciled</small></div></div>
         </div>
-        <div className="preservation-note"><span>✓</span><div><b>10 years of service history preserved</b><small>Archive coverage 2015–2025 · 4 of 4 displayed records reconciled</small></div></div>
+
+        <div className="modern-mobile-layout">
+          <div className="modern-heading">
+            <div><small>EQUIPMENT / XR-442</small><h3>Industrial Pump XR-442</h3><p>Nordic Pumps A/S <span>·</span> Customer no. 10442</p></div>
+            <span className="active-badge"><i /> Active <small>CODE A</small></span>
+          </div>
+          <div className="modern-facts">
+            <div><small>Customer</small><b>Nordic Pumps A/S</b><span>10442</span></div>
+            <div><small>Equipment</small><b>Industrial Pump XR-442</b><span>XR-442 · SITE CPH-04</span></div>
+            <div><small>Latest service</small><b>Annual service</b><span>2025-04-09</span></div>
+          </div>
+          <div className="modern-history">
+            <div className="modern-history-title"><div><small>SERVICE HISTORY</small><b>4 completed records</b></div><span className="modern-filter" aria-hidden="true">Filter&nbsp; ▾</span></div>
+            <div className="modern-timeline">
+              {serviceHistory.map((record) => (
+                <div key={record.date}>
+                  <span className="timeline-dot">✓</span>
+                  <div><b>{record.event}</b><small>{record.type} · {record.reference} · STATUS C</small></div>
+                  <time>{record.date}</time>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="preservation-note"><span>✓</span><div><b>10 years of service history preserved</b><small>Archive coverage 2015–2025 · 4 of 4 displayed records reconciled</small></div></div>
+        </div>
       </div>
     </article>
   );
