@@ -409,46 +409,56 @@ function ModernApplication() {
         </div>
 
         <div className="modern-desktop-layout">
-          <div className="modern-ops-head">
-            <div>
-              <small>EQUIPMENT / XR-442</small>
-              <h3>Industrial Pump XR-442</h3>
-              <p>Nordic Pumps A/S <span>·</span> Customer no. 10442</p>
+          <div className="modern-commandbar" aria-hidden="true">
+            <div className="modern-command-actions">
+              <span className="primary">＋<small>New</small></span>
+              <span>▤<small>Open</small></span>
+              <span>⎙<small>Print</small></span>
+              <span>↻<small>Refresh</small></span>
             </div>
-            <div className="modern-ops-status">
-              <span className="active-badge"><i /> Active <small>CODE A</small></span>
-              <div className="modern-latest"><small>LATEST SERVICE</small><b>Annual service</b><time dateTime="2025-04-09">2025-04-09</time></div>
-            </div>
+            <span className="modern-record-context">Equipment record · <code>XR-442</code></span>
           </div>
 
-          <dl className="modern-summary" aria-label="Equipment summary">
-            <div className="summary-customer"><dt>Customer</dt><dd>Nordic Pumps A/S <small>10442</small></dd></div>
-            <div className="summary-equipment"><dt>Equipment</dt><dd>Industrial Pump XR-442 <small>XR-442</small></dd></div>
-            <div className="summary-site"><dt>Site</dt><dd>CPH-04</dd></div>
-            <div className="summary-status"><dt>Status</dt><dd><i /> Active <small>Code A</small></dd></div>
-            <div className="summary-service"><dt>Latest service</dt><dd>Annual service <small>2025-04-09</small></dd></div>
-          </dl>
+          <div className="modern-record-tabs" aria-hidden="true">
+            <b>Customer</b><span>Equipment</span><span>Service cases</span><span>History</span>
+          </div>
 
-          <div className="modern-history modern-history-desktop">
-            <div className="modern-history-title">
+          <section className="modern-record-panel" aria-label="Customer and equipment details">
+            <div className="modern-panel-legend"><span>Customer / Equipment</span><small>Equipment record</small></div>
+            <dl className="modern-record-grid">
+              <div><dt>Customer No.</dt><dd><code>10442</code></dd></div>
+              <div className="wide"><dt>Customer</dt><dd>Nordic Pumps A/S</dd></div>
+              <div><dt>Equipment ID</dt><dd><code>XR-442</code></dd></div>
+              <div className="wide"><dt>Equipment</dt><dd>Industrial Pump XR-442</dd></div>
+              <div><dt>Status</dt><dd><span className="modern-inline-status"><i /> Active <small>Code A</small></span></dd></div>
+              <div><dt>Site</dt><dd><code>CPH-04</code></dd></div>
+              <div><dt>Latest service</dt><dd>Annual service <time dateTime="2025-04-09">2025-04-09</time></dd></div>
+            </dl>
+          </section>
+
+          <section className="modern-history-aligned" aria-label="Service history">
+            <div className="modern-history-heading">
               <div><small>SERVICE HISTORY</small><b>4 completed records</b></div>
               <div className="modern-history-tools" aria-hidden="true"><span>⌕&nbsp; Search history</span><span>All records&nbsp; ▾</span></div>
             </div>
-            <table className="modern-history-table">
-              <thead><tr><th>Date</th><th>Service</th><th>Reference</th><th>Status</th></tr></thead>
+            <table className="modern-history-table modern-history-table-aligned">
+              <thead><tr><th>Date</th><th>Type</th><th>Service</th><th>Reference</th><th>Status</th></tr></thead>
               <tbody>
-                {serviceHistory.map((record) => (
+                {serviceHistory.slice().reverse().map((record) => (
                   <tr key={record.date}>
                     <td><time dateTime={record.date}>{record.date}</time></td>
-                    <td><b>{record.event}</b><small>{record.type}</small></td>
+                    <td><code>{record.type}</code></td>
+                    <td><b>{record.event}</b></td>
                     <td><code>{record.reference}</code></td>
                     <td><span className="completed-status"><i /> Completed <small>CODE C</small></span></td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          </div>
-          <div className="preservation-note preservation-note-compact"><span>✓</span><div><b>10 years of service history preserved</b><small>Archive coverage 2015–2025 · 4 of 4 displayed records reconciled</small></div></div>
+          </section>
+
+          <div className="modern-preservation-strip"><span>✓</span><b>10 years of service history preserved</b><small>Archive 2015–2025 · 4 of 4 records reconciled</small></div>
+          <div className="modern-statusbar" aria-hidden="true"><span>4 records · All data reconciled</span><span>Search · Help</span></div>
         </div>
 
         <div className="modern-mobile-layout">

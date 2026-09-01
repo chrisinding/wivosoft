@@ -959,7 +959,23 @@ h2 {
 }
 
 .desktop-comparison .modern-app {
+  grid-template-columns: 1fr;
   min-width: 0;
+}
+
+.desktop-comparison .modern-sidebar {
+  display: none;
+}
+
+.desktop-comparison .modern-content {
+  height: 100%;
+  padding: 0;
+}
+
+.desktop-comparison .modern-appbar {
+  background: #e7edeb;
+  min-height: 48px;
+  padding: 0 16px;
 }
 
 .modern-desktop-layout {
@@ -973,170 +989,228 @@ h2 {
   display: none;
 }
 
-.modern-ops-head {
+.modern-commandbar {
   align-items: center;
-  border-bottom: 1px solid #becbc7;
-  display: grid;
-  gap: 24px;
-  grid-template-columns: minmax(0, 7fr) minmax(245px, 5fr);
-  min-height: 86px;
-  padding: 13px 0 12px;
+  background: #d7e0dd;
+  border-bottom: 1px solid #aebdb8;
+  display: flex;
+  justify-content: space-between;
+  min-height: 43px;
+  padding: 0 16px;
 }
 
-.modern-ops-head > div:first-child {
-  min-width: 0;
+.modern-command-actions {
+  align-items: center;
+  display: flex;
+  gap: 6px;
 }
 
-.modern-ops-head > div:first-child > small,
-.modern-latest small,
-.modern-summary dt,
-.modern-history-table th {
-  color: #5d6c67;
+.modern-command-actions > span {
+  align-items: center;
+  background: rgba(247, 250, 248, 0.55);
+  border: 1px solid #b3c0bc;
+  border-radius: 3px;
+  color: #41514c;
+  display: inline-flex;
+  font-size: 12px;
+  gap: 5px;
+  height: 27px;
+  padding: 0 8px;
+}
+
+.modern-command-actions > span.primary {
+  background: #315f57;
+  border-color: #315f57;
+  color: #f0f5f3;
+}
+
+.modern-command-actions small {
+  font-size: 9px;
+  letter-spacing: 0;
+}
+
+.modern-record-context {
+  color: #5b6a65;
   font-family: var(--font-geist-mono), monospace;
   font-size: 9px;
-  letter-spacing: 0.09em;
+}
+
+.modern-record-context code {
+  color: #30413b;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.modern-record-tabs {
+  align-items: end;
+  background: #e2e9e6;
+  border-bottom: 1px solid #acbbb6;
+  display: flex;
+  gap: 3px;
+  min-height: 38px;
+  padding: 7px 16px 0;
+}
+
+.modern-record-tabs span,
+.modern-record-tabs b {
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  color: #65736e;
+  display: flex;
+  font-size: 10px;
+  font-weight: 550;
+  height: 31px;
+  padding: 0 13px;
+}
+
+.modern-record-tabs b {
+  border-bottom-color: #447d72;
+  color: #192722;
+  font-weight: 680;
+}
+
+.modern-record-panel {
+  background: rgba(247, 250, 248, 0.54);
+  border: 1px solid #b3c2bd;
+  margin: 10px 16px 0;
+}
+
+.modern-panel-legend {
+  align-items: center;
+  border-bottom: 1px solid #c0ccc8;
+  display: flex;
+  justify-content: space-between;
+  min-height: 31px;
+  padding: 0 10px;
+}
+
+.modern-panel-legend span,
+.modern-panel-legend small,
+.modern-record-grid dt,
+.modern-history-heading small,
+.modern-history-table th {
+  color: #5b6a65;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.modern-ops-head h3 {
-  color: #101b18;
-  font-size: 22px;
-  font-weight: 660;
-  letter-spacing: -0.035em;
-  margin: 4px 0 3px;
+.modern-panel-legend span {
+  color: #263630;
+  font-weight: 680;
 }
 
-.modern-ops-head p {
-  color: #52615c;
-  font-size: 11px;
+.modern-panel-legend small {
+  font-size: 8px;
+}
+
+.modern-record-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.25fr) minmax(0, 0.9fr);
   margin: 0;
 }
 
-.modern-ops-head p span {
-  color: #98a5a0;
-  margin: 0 5px;
-}
-
-.modern-ops-status {
+.modern-record-grid > div {
   align-items: center;
-  border-left: 1px solid #bcc9c5;
+  border-bottom: 1px solid #cbd5d1;
+  border-right: 1px solid #cbd5d1;
   display: grid;
-  gap: 15px;
-  grid-template-columns: auto 1fr;
-  min-width: 0;
-  padding-left: 18px;
+  gap: 7px;
+  grid-template-columns: minmax(60px, 0.72fr) minmax(0, 1fr);
+  min-height: 35px;
+  padding: 5px 9px;
 }
 
-.modern-latest {
-  display: grid;
-  gap: 3px 8px;
-  grid-template-columns: minmax(0, auto) auto;
-  min-width: 0;
-}
-
-.modern-latest small {
-  grid-column: 1 / -1;
-}
-
-.modern-latest b {
-  color: #1d2925;
-  font-size: 11px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.modern-latest time {
-  color: #52615c;
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 9px;
-  white-space: nowrap;
-}
-
-.modern-summary {
-  background: rgba(247, 250, 248, 0.38);
-  border-bottom: 1px solid #b9c6c2;
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  margin: 0;
-  min-height: 57px;
-}
-
-.modern-summary > div {
-  border-right: 1px solid #c3ceca;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0;
-  padding: 8px 10px;
-}
-
-.modern-summary > div:last-child {
-  border-right: 0;
-}
-
-.modern-summary .summary-customer,
-.modern-summary .summary-equipment {
-  grid-column: span 3;
-}
-
-.modern-summary .summary-site,
-.modern-summary .summary-status,
-.modern-summary .summary-service {
+.modern-record-grid > div.wide {
   grid-column: span 2;
 }
 
-.modern-summary dt {
-  margin-bottom: 5px;
+.modern-record-grid > div:nth-last-child(-n + 3) {
+  border-bottom: 0;
 }
 
-.modern-summary dd {
-  color: #1f2b27;
+.modern-record-grid > div:nth-child(2),
+.modern-record-grid > div:nth-child(4),
+.modern-record-grid > div:last-child {
+  border-right: 0;
+}
+
+.modern-record-grid dt {
+  min-width: 0;
+}
+
+.modern-record-grid dd {
+  color: #1c2925;
   font-size: 10px;
-  font-weight: 650;
+  font-weight: 660;
   margin: 0;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.modern-summary dd small {
-  color: #667570;
+.modern-record-grid code,
+.modern-record-grid time {
+  color: #40514b;
   font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+}
+
+.modern-record-grid time {
   display: block;
-  font-size: 8px;
   font-weight: 500;
-  margin-left: 0;
   margin-top: 2px;
 }
 
-.modern-summary .summary-status dd {
+.modern-inline-status {
   align-items: center;
-  color: #2c6559;
-  display: flex;
+  color: #2e675c;
+  display: inline-flex;
+  gap: 5px;
 }
 
-.modern-summary .summary-status dd > i {
+.modern-inline-status > i {
   background: #4e8d7e;
   border-radius: 50%;
-  height: 5px;
-  margin-right: 5px;
-  width: 5px;
+  height: 6px;
+  width: 6px;
 }
 
-.modern-summary .summary-status dd small {
-  margin-left: 5px;
-  margin-top: 0;
+.modern-inline-status small {
+  color: #65746f;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  font-weight: 500;
+  margin-left: 2px;
+  text-transform: uppercase;
 }
 
-.modern-history-desktop {
-  flex: 1;
-  margin-top: 9px;
+.modern-history-aligned {
+  background: rgba(247, 250, 248, 0.5);
+  border: 1px solid #b3c2bd;
+  margin: 9px 16px 0;
 }
 
-.modern-history-desktop .modern-history-title {
-  min-height: 43px;
-  padding: 0 11px;
+.modern-history-heading {
+  align-items: center;
+  border-bottom: 1px solid #bdcac5;
+  display: flex;
+  justify-content: space-between;
+  min-height: 40px;
+  padding: 0 10px;
+}
+
+.modern-history-heading > div:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.modern-history-heading b {
+  color: #22312c;
+  font-size: 10px;
 }
 
 .modern-history-tools {
@@ -1146,11 +1220,11 @@ h2 {
 }
 
 .modern-history-tools span {
-  background: #dfe7e4;
+  background: #e7edeb;
   border: 1px solid #b5c3be;
   border-radius: 3px;
   color: #4f5d58;
-  font-size: 8px;
+  font-size: 9px;
   padding: 5px 8px;
 }
 
@@ -1161,24 +1235,25 @@ h2 {
 }
 
 .modern-history-table th {
-  background: #dfe7e4;
+  background: #dce5e2;
   font-weight: 600;
-  height: 28px;
-  padding: 0 11px;
+  height: 29px;
+  padding: 0 9px;
   text-align: left;
 }
 
-.modern-history-table th:nth-child(1) { width: 20%; }
-.modern-history-table th:nth-child(2) { width: 39%; }
-.modern-history-table th:nth-child(3) { width: 19%; }
-.modern-history-table th:nth-child(4) { width: 22%; }
+.modern-history-table-aligned th:nth-child(1) { width: 17%; }
+.modern-history-table-aligned th:nth-child(2) { width: 11%; }
+.modern-history-table-aligned th:nth-child(3) { width: 35%; }
+.modern-history-table-aligned th:nth-child(4) { width: 17%; }
+.modern-history-table-aligned th:nth-child(5) { width: 20%; }
 
 .modern-history-table td {
   border-top: 1px solid #cad4d0;
   color: #26332f;
   font-size: 10px;
   height: 42px;
-  padding: 0 11px;
+  padding: 0 9px;
   vertical-align: middle;
 }
 
@@ -1192,24 +1267,14 @@ h2 {
 
 .modern-history-table time,
 .modern-history-table code {
-  color: #4f5e59;
+  color: #43534d;
   font-family: var(--font-geist-mono), monospace;
   font-size: 9px;
 }
 
-.modern-history-table td:nth-child(2) b {
+.modern-history-table-aligned td:nth-child(3) b {
   color: #17231f;
   font-size: 11px;
-}
-
-.modern-history-table td:nth-child(2) > small {
-  background: #d9e3df;
-  border-radius: 2px;
-  color: #64736e;
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 8px;
-  margin-left: 7px;
-  padding: 3px 4px;
 }
 
 .completed-status {
@@ -1235,6 +1300,56 @@ h2 {
   font-size: 8px;
   font-weight: 500;
   margin-left: 6px;
+}
+
+.modern-preservation-strip {
+  align-items: center;
+  background: rgba(54, 110, 98, 0.06);
+  border: 1px solid rgba(54, 110, 98, 0.18);
+  color: #2b3b35;
+  display: flex;
+  gap: 7px;
+  margin: 8px 16px 0;
+  min-height: 38px;
+  padding: 0 10px;
+}
+
+.modern-preservation-strip > span {
+  align-items: center;
+  border: 1px solid rgba(54, 110, 98, 0.3);
+  border-radius: 50%;
+  color: #326f62;
+  display: flex;
+  flex: 0 0 auto;
+  font-size: 8px;
+  height: 18px;
+  justify-content: center;
+  width: 18px;
+}
+
+.modern-preservation-strip b {
+  font-size: 10px;
+}
+
+.modern-preservation-strip small {
+  color: #63726d;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  margin-left: auto;
+}
+
+.modern-statusbar {
+  align-items: center;
+  background: #c9d4d0;
+  border-top: 1px solid #a5b5af;
+  color: #50615b;
+  display: flex;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 8px;
+  justify-content: space-between;
+  margin-top: auto;
+  min-height: 27px;
+  padding: 0 16px;
 }
 
 .modern-heading {
@@ -2415,25 +2530,29 @@ h2 {
   }
 
   .desktop-comparison .modern-content {
-    padding-left: 17px;
-    padding-right: 17px;
+    padding: 0;
   }
 
-  .desktop-comparison .modern-ops-head {
-    gap: 16px;
-    grid-template-columns: minmax(0, 1fr) minmax(220px, 0.8fr);
-  }
-
-  .desktop-comparison .modern-ops-head h3 {
-    font-size: 20px;
-  }
-
-  .desktop-comparison .modern-ops-status {
-    gap: 10px;
+  .desktop-comparison .modern-appbar,
+  .desktop-comparison .modern-commandbar,
+  .desktop-comparison .modern-statusbar {
     padding-left: 13px;
+    padding-right: 13px;
   }
 
-  .desktop-comparison .modern-history-tools span:first-child,
+  .desktop-comparison .modern-record-tabs {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .desktop-comparison .modern-record-panel,
+  .desktop-comparison .modern-history-aligned,
+  .desktop-comparison .modern-preservation-strip {
+    margin-left: 13px;
+    margin-right: 13px;
+  }
+
+  .desktop-comparison .modern-record-context,
   .desktop-comparison .completed-status small {
     display: none;
   }
