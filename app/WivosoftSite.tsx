@@ -3,6 +3,7 @@
 import Image from "next/image";
 import {
   AnimatePresence,
+  animate,
   motion,
   useReducedMotion,
 } from "framer-motion";
@@ -321,10 +322,10 @@ export function Hero() {
           around the software their business depends on.
         </p>
         <div className="hero-actions">
-          <a className="button button-primary" href="#how-we-work">
+          <a className="button button-secondary" href="#how-we-work">
             See how we work <span aria-hidden="true">↘</span>
           </a>
-          <a className="button button-secondary" href="#contact">
+          <a className="button button-primary" href="#contact">
             Talk to Wivosoft
           </a>
         </div>
@@ -436,7 +437,37 @@ function ModernApplication() {
 export function LegacyModernSlider() {
   const [position, setPosition] = useState(48);
   const [mobileView, setMobileView] = useState<ApplicationView>("modern");
+  const stageRef = useRef<HTMLDivElement>(null);
+  const sliderTouched = useRef(false);
   const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage || reduceMotion) return;
+
+    let nudge: ReturnType<typeof animate> | undefined;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting || sliderTouched.current) return;
+      observer.disconnect();
+      nudge = animate(48, [48, 50.2, 45.8, 48], {
+        delay: 0.35,
+        duration: 1.15,
+        ease: [0.22, 1, 0.36, 1],
+        onUpdate: (value) => setPosition(value),
+      });
+    }, { threshold: 0.55 });
+
+    observer.observe(stage);
+    return () => {
+      observer.disconnect();
+      nudge?.stop();
+    };
+  }, [reduceMotion]);
+
+  const updatePosition = (value: number) => {
+    sliderTouched.current = true;
+    setPosition(value);
+  };
 
   return (
     <section className="comparison-section section-shell" aria-labelledby="comparison-title">
@@ -451,30 +482,31 @@ export function LegacyModernSlider() {
       <FadeIn className="comparison-frame" delay={0.08}>
         <div className="comparison-meta">
           <span><i className="legacy-key" /> Legacy · 2011</span>
-          <span>Drag to compare</span>
+          <span><b aria-hidden="true">↔</b> Drag to compare</span>
           <span><i className="modern-key" /> Modern · Today</span>
         </div>
 
         <div className="desktop-comparison">
           <div
             className="comparison-stage"
+            ref={stageRef}
             style={{ "--comparison-position": `${position}%` } as CSSProperties}
           >
             <div className="compare-layer modern-layer" aria-hidden="true"><ModernApplication /></div>
             <div className="compare-layer legacy-layer" aria-hidden="true"><LegacyApplication /></div>
             <div className="compare-divider" aria-hidden="true">
-              <div className="compare-handle"><span>‹</span><i /><span>›</span></div>
+              <div className="compare-handle"><span>↔</span></div>
             </div>
             <input
               className="comparison-range"
               type="range"
-              min="0"
-              max="100"
+              min="4"
+              max="96"
               value={position}
               aria-label="Reveal legacy versus modern application"
               aria-describedby="comparison-description"
               aria-valuetext={`${position}% legacy and ${100 - position}% modern`}
-              onChange={(event) => setPosition(Number(event.target.value))}
+              onChange={(event) => updatePosition(Number(event.target.value))}
             />
             <p className="sr-only" id="comparison-description">A fictional service administration system shown before and after modernization. Customer Nordic Pumps A/S, equipment XR-442 and its complete service archive are preserved in both versions. Use the arrow keys to change the visual split.</p>
           </div>
@@ -523,10 +555,10 @@ export function ExplanationModeToggle() {
             <motion.div
               key="simple"
               className="simple-explanation"
-              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
-              transition={{ duration: 0.24 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 6, filter: "blur(2px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -4, filter: "blur(2px)" }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="problem-list">
                 {simpleProblems.map((problem, index) => (
@@ -539,10 +571,10 @@ export function ExplanationModeToggle() {
             <motion.div
               key="technical"
               className="technical-explanation"
-              initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={reduceMotion ? undefined : { opacity: 0, y: -10 }}
-              transition={{ duration: 0.24 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 6, filter: "blur(2px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={reduceMotion ? undefined : { opacity: 0, y: -4, filter: "blur(2px)" }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="technical-header"><p>Pragmatic architecture means choosing the lowest-risk route that fits the system. It does not automatically mean microservices, Kubernetes or a cloud migration.</p><span>CHANGE WHAT EARNS ITS KEEP</span></div>
               <div className="technical-grid">
@@ -714,6 +746,16 @@ export function AboutSection() {
         <div className="about-copy">
           <p>Wivosoft is founded by two software consultants with backgrounds across software development, technical testing and business-critical systems.</p>
           <p>Our experience spans development, migration, test automation, performance testing and CI/CD — giving us a strong focus on changing software safely rather than simply changing it quickly.</p>
+          <div className="founders" aria-label="Wivosoft founders">
+            <article className="founder-entry">
+              <div><h3>Christian</h3><p>Quality Engineering &amp; Software Development</p></div>
+              <span className="founder-link" aria-label="LinkedIn profile placeholder">LinkedIn <span aria-hidden="true">↗</span></span>
+            </article>
+            <article className="founder-entry">
+              <div><h3>Tobias</h3><p>Software Modernization &amp; Migration</p></div>
+              <span className="founder-link" aria-label="LinkedIn profile placeholder">LinkedIn <span aria-hidden="true">↗</span></span>
+            </article>
+          </div>
           <div className="about-stack"><span>PRIMARY ECOSYSTEMS</span><b>.NET</b><b>Java</b><b>Python</b></div>
           <small>We choose technology based on the system rather than forcing every customer into the same stack.</small>
         </div>
