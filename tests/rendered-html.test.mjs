@@ -41,6 +41,7 @@ test("server-renders the public Wivosoft homepage", async () => {
   assert.match(html, /Software Modernization &amp; Migration/);
   assert.match(html, /mailto:hello@wivosoft\.dk/);
   assert.match(html, /og\.png/);
+  assert.match(html, /wivosoft-icon\.png/);
   assert.doesNotMatch(html, /Interactive example|Nordic Pumps A\/S|Example migration/i);
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);
 });
@@ -81,10 +82,12 @@ test("removes starter-only assets and keeps required production dependencies", a
   assert.doesNotMatch(page, /WivosoftSite/);
   assert.match(demoPage, /WivosoftSite/);
   assert.match(layout, /metadataBase/);
+  assert.match(layout, /wivosoft-icon\.png/);
 
   await assert.rejects(
     access(new URL("../app/_sites-preview/SkeletonPreview.tsx", import.meta.url)),
   );
   await access(new URL("../public/wivosoft-logo.png", import.meta.url));
+  await access(new URL("../public/wivosoft-icon.png", import.meta.url));
   await access(new URL("../public/og.png", import.meta.url));
 });

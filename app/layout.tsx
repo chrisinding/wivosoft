@@ -29,8 +29,15 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Wivosoft" }],
   icons: {
-    icon: "/wivosoft-logo.png",
-    shortcut: "/wivosoft-logo.png",
+    icon: [
+      {
+        url: "/wivosoft-icon.png",
+        type: "image/png",
+        sizes: "512x512",
+      },
+    ],
+    shortcut: "/wivosoft-icon.png",
+    apple: "/wivosoft-icon.png",
   },
 };
 
