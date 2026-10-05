@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "./consulting.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,19 +32,24 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/wivosoft-icon.png",
+        url: "/wivosoft-favicon.svg",
+        type: "image/svg+xml",
+        sizes: "any",
+      },
+      {
+        url: "/wivosoft-icon-v2.png",
         type: "image/png",
         sizes: "512x512",
       },
     ],
-    shortcut: "/wivosoft-icon.png",
-    apple: "/wivosoft-icon.png",
+    shortcut: "/wivosoft-favicon.svg",
+    apple: "/wivosoft-icon-v2.png",
   },
 };
 
 export const viewport: Viewport = {
-  colorScheme: "dark",
-  themeColor: "#070a0b",
+  colorScheme: "light dark",
+  themeColor: "#1e575e",
   width: "device-width",
   initialScale: 1,
 };
