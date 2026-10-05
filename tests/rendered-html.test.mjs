@@ -35,13 +35,26 @@ test("server-renders the public Wivosoft homepage", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Wivosoft — Software Consulting<\/title>/i);
-  assert.match(html, /Software consulting across development, technical testing and business-critical systems/);
+  assert.match(html, /Hands-on software consultants in Copenhagen/);
+  assert.match(html, /Better software/);
+  assert.match(html, /Built together/);
+  assert.match(html, /Software development/);
+  assert.match(html, /Quality engineering/);
+  assert.match(html, /Modernization &amp; migration/);
+  assert.match(html, /A consultant in your corner/);
+  assert.match(html, /A focused project, clearly scoped/);
   assert.match(html, /Engineering experience from both sides of the release/);
   assert.match(html, /Quality Engineering &amp; Software Development/);
   assert.match(html, /Software Modernization &amp; Migration/);
   assert.match(html, /mailto:hello@wivosoft\.dk/);
   assert.match(html, /og\.png/);
   assert.match(html, /wivosoft-icon\.png/);
+  assert.match(html, /wivosoft-brand\.png/);
+  for (const anchor of ["main-content", "services", "working-together", "people", "contact", "top"]) {
+    assert.match(html, new RegExp(`id="${anchor}"`));
+    assert.match(html, new RegExp(`href="#${anchor}"`));
+  }
+  assert.doesNotMatch(html, /\[TO BE ADDED\]|\[placeholder\]|href="\/demo"/i);
   assert.doesNotMatch(html, /Interactive example|Nordic Pumps A\/S|Example migration/i);
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);
 });
@@ -90,4 +103,5 @@ test("removes starter-only assets and keeps required production dependencies", a
   await access(new URL("../public/wivosoft-logo.png", import.meta.url));
   await access(new URL("../public/wivosoft-icon.png", import.meta.url));
   await access(new URL("../public/og.png", import.meta.url));
+  await access(new URL("../public/wivosoft-brand.png", import.meta.url));
 });
