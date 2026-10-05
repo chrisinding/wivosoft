@@ -4,10 +4,10 @@ export default function Brand({ light = false }: { light?: boolean }) {
   return (
     <span className={`consulting-wordmark${light ? " consulting-wordmark-light" : ""}`}>
       <Image
-        src="/wivosoft-brand.png"
+        src="/wivosoft-wordmark.webp"
         alt="Wivosoft"
-        width={1536}
-        height={1024}
+        width={935}
+        height={190}
         priority={!light}
         unoptimized
       />

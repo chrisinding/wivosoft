@@ -1,0 +1,6 @@
+# Copy to .dev.vars for local development. Never commit real keys.
+# The form uses an email-draft fallback until ALL four values are configured.
+RESEND_API_KEY=
+CONTACT_FROM_EMAIL="Wivosoft <website@wivosoft.dk>"
+TURNSTILE_SECRET_KEY=
+TURNSTILE_SITE_KEY=

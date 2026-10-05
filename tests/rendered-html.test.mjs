@@ -35,35 +35,72 @@ test("server-renders the public Wivosoft homepage", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Wivosoft — Software Consulting<\/title>/i);
-  assert.match(html, /Hands-on software consultants in Copenhagen/);
+  assert.match(html, /Independent \.NET and Java consultants in Copenhagen/);
   assert.match(html, /Better software/);
   assert.match(html, /Built together/);
   assert.match(html, /Software development/);
   assert.match(html, /Quality engineering/);
   assert.match(html, /Modernization &amp; migration/);
-  assert.match(html, /A consultant in your corner/);
-  assert.match(html, /A focused project, clearly scoped/);
-  assert.match(html, /Engineering experience from both sides of the release/);
+  assert.match(html, /Add experience where you need it/);
+  assert.match(html, /Agree on a scope/);
+  assert.match(html, /These examples come from those roles/);
+  assert.match(html, /Independent projects developed alongside our previous roles/);
+  assert.match(html, /Puppy Tracker/);
+  assert.match(html, /Can My Dog Eat This/);
+  assert.match(html, /JobWatcher/);
   assert.match(html, /Christian Volck/);
   assert.match(html, /Tobias Wiik/);
-  assert.match(html, /Software Development &amp; Quality Engineering/);
+  assert.match(html, /Team Lead \/ Scrum Master/);
+  assert.match(html, /Data Migration \/ Tech Lead/);
   assert.match(html, /Who we are/);
   assert.match(html, /Netcompany/);
-  assert.match(html, /Nearly five years of software development experience/);
+  assert.match(html, /Nearly five years in consulting, spanning testing and software development/);
+  assert.match(html, /worked extensively with Python/);
+  assert.match(html, /Available for new assignments/);
+  assert.match(html, /Remote or on-site in Copenhagen/);
+  assert.match(html, /cv\/Christian_Volck_Sinding_CV\.pdf/);
+  assert.match(html, /cv\/Tobias_Wiik_Thalbitzer_CV\.pdf/);
+  assert.match(html, /linkedin\.com\/in\/christian-volck-sinding-86545682/);
+  assert.match(html, /linkedin\.com\/in\/tobias-thalbitzer-b36055146/);
+  assert.match(html, /An extra hand for our team/);
+  assert.match(html, /Something built or improved/);
+  assert.match(html, /Help figuring it out/);
   assert.match(html, /christian-volck\.webp/);
   assert.match(html, /tobias-wiik\.webp/);
   assert.match(html, /mailto:hello@wivosoft\.dk/);
-  assert.match(html, /og\.png/);
+  assert.match(html, /wivosoft-social\.png/);
   assert.match(html, /wivosoft-icon-v2\.png/);
   assert.match(html, /wivosoft-favicon\.svg/);
-  assert.match(html, /wivosoft-brand\.png/);
-  for (const anchor of ["main-content", "services", "working-together", "people", "contact", "top"]) {
+  assert.match(html, /wivosoft-wordmark\.webp/);
+  for (const anchor of ["main-content", "services", "work", "people", "contact", "top"]) {
     assert.match(html, new RegExp(`id="${anchor}"`));
     assert.match(html, new RegExp(`href="#${anchor}"`));
   }
   assert.doesNotMatch(html, /\[TO BE ADDED\]|\[placeholder\]|href="\/demo"/i);
   assert.doesNotMatch(html, /Interactive example|Nordic Pumps A\/S|Example migration/i);
   assert.doesNotMatch(html, /codex-preview|Building your site|react-loading-skeleton/i);
+});
+
+test("server-renders the privacy notice", async () => {
+  const response = await render("/privacy");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<title>Privacy notice — Wivosoft<\/title>/);
+  assert.match(html, /Christian Volck Sinding and Tobias Wiik Thalbitzer/);
+  assert.match(html, /Resend/);
+  assert.match(html, /Cloudflare Turnstile/);
+  assert.match(html, /Datatilsynet/);
+  assert.match(html, /mailto:hello@wivosoft\.dk/);
+});
+
+test("contact configuration exposes only the public site key and enabled state", async () => {
+  const response = await render("/api/contact");
+  assert.equal(response.status, 200);
+  assert.equal(response.headers.get("cache-control"), "no-store");
+  const config = await response.json();
+  assert.deepEqual(Object.keys(config).sort(), ["enabled", "siteKey"]);
+  assert.equal(typeof config.enabled, "boolean");
+  assert.ok(config.siteKey === null || typeof config.siteKey === "string");
 });
 
 test("server-renders the complete modernization website at /demo", async () => {
@@ -117,4 +154,8 @@ test("removes starter-only assets and keeps required production dependencies", a
   await access(new URL("../public/tobias-wiik-mask.png", import.meta.url));
   await access(new URL("../public/og.png", import.meta.url));
   await access(new URL("../public/wivosoft-brand.png", import.meta.url));
+  await access(new URL("../public/wivosoft-wordmark.webp", import.meta.url));
+  await access(new URL("../public/wivosoft-social.png", import.meta.url));
+  await access(new URL("../public/cv/Christian_Volck_Sinding_CV.pdf", import.meta.url));
+  await access(new URL("../public/cv/Tobias_Wiik_Thalbitzer_CV.pdf", import.meta.url));
 });

@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import Brand from "./Brand";
+import ContactForm from "./ContactForm";
 
 const title = "Wivosoft — Software Consulting";
 const description =
-  "Hands-on software consultants in Copenhagen. Development, quality engineering and modernization, through team support or scoped projects.";
+  "Independent .NET and Java consultants in Copenhagen. Development, integrations, testing and migration for business-critical software. Available for new assignments.";
 const contactHref = "mailto:hello@wivosoft.dk?subject=Let%E2%80%99s%20talk%20about%20a%20project";
 
 export const metadata: Metadata = {
@@ -20,10 +21,10 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: "/og.png",
-        width: 1731,
-        height: 909,
-        alt: "Wivosoft — software consulting across development, technical testing and business-critical systems.",
+        url: "/wivosoft-social.png",
+        width: 1200,
+        height: 630,
+        alt: "Wivosoft — Independent .NET and Java consultants in Copenhagen. Better software. Built together.",
       },
     ],
   },
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/og.png"],
+    images: ["/wivosoft-social.png"],
   },
 };
 
@@ -39,51 +40,55 @@ const services = [
   {
     number: "01",
     title: "Software development",
-    copy: "A new feature, a system that needs attention, or extra engineering capacity. We can deliver a defined project or work alongside your team to build software that is easier to maintain and move forward.",
-    capabilities: ".NET · Java · Python · Integrations",
-    situation: "When you need a project delivered or extra hands.",
+    copy: "Build features, connect systems and improve existing applications. Our experience includes .NET services, Java backends, payment and signing flows, and integrations with public-sector data.",
+    capabilities: "C# / .NET · Java / Spring Boot · REST & GraphQL",
+    situation: "For a defined project or extra capacity in your team.",
   },
   {
     number: "02",
     title: "Quality engineering",
-    copy: "Build confidence in the code you depend on. We use automated tests, performance testing and quality checks to catch bugs early and keep important behavior working as your software changes.",
-    capabilities: "Test automation · Performance testing · CI/CD",
-    situation: "When you need code you can rely on.",
+    copy: "Make releases easier to trust. We build automated tests, investigate performance and integrate quality checks into delivery pipelines, drawing on experience in both testing and development.",
+    capabilities: "Integration tests · Browser automation · CI/CD",
+    situation: "For important workflows that need to keep working.",
   },
   {
     number: "03",
     title: "Modernization & migration",
-    copy: "Move an existing application or its data to a better foundation. We help you understand what matters, plan the change, and verify the behavior and data along the way.",
-    capabilities: "Legacy applications · Data migration",
-    situation: "When your current system is holding you back.",
+    copy: "Upgrade frameworks and move data between systems with checks along the way. We’ve worked on .NET and Grails upgrades, REST-to-GraphQL integration changes and insurance data migrations.",
+    capabilities: "Framework upgrades · SQL · Data migration",
+    situation: "For changes where existing behaviour and data matter.",
   },
 ];
 
 const founders = [
   {
-    name: "Christian Volck",
+    name: "Christian Volck Sinding",
     photo: "/christian-volck.webp",
     photoWidth: 1065,
     photoHeight: 1477,
     photoClass: "consulting-portrait-christian",
-    focus: "Software Development & Quality Engineering",
-    copy: "Nearly five years of software development experience on business-critical systems, across consulting assignments involving new development, maintenance and bug fixing.",
+    focus: ".NET & Java / Team Lead / Scrum Master",
+    copy: "Nearly five years in consulting, spanning testing and software development. Christian has worked on public-sector systems for Erhvervsstyrelsen and Domstolsstyrelsen, with hands-on .NET, Java and Groovy development alongside Team Lead and Scrum Master responsibilities.",
+    linkedin: "https://www.linkedin.com/in/christian-volck-sinding-86545682/",
+    cv: "/cv/Christian_Volck_Sinding_CV.pdf",
   },
   {
-    name: "Tobias Wiik",
+    name: "Tobias Wiik Thalbitzer",
     photo: "/tobias-wiik.webp",
     photoWidth: 1024,
     photoHeight: 1536,
     photoClass: "consulting-portrait-tobias",
-    focus: "Software Development & Quality Engineering",
-    copy: "Nearly five years of software development experience on business-critical systems, across consulting assignments involving new development, maintenance and bug fixing.",
+    focus: "Java & Spring Boot / Data Migration / Tech Lead",
+    copy: "Nearly five years in consulting, spanning testing and software development. Tobias has worked on insurance systems and data migrations for Topdanmark and If, including technical and team leadership on a migration to Guidewire, alongside Java backend development and test automation.",
+    linkedin: "https://www.linkedin.com/in/tobias-thalbitzer-b36055146/",
+    cv: "/cv/Tobias_Wiik_Thalbitzer_CV.pdf",
   },
 ];
 
-const firstSteps = [
-  { title: "Talk it through", copy: "Tell us about your team, your software and the challenge in front of you." },
-  { title: "Agree on the work", copy: "Together, we define the scope, responsibilities and a practical way to get started." },
-  { title: "Get to work", copy: "We work closely with you, share progress and hand over knowledge as we go." },
+const projects = [
+  { name: "Puppy Tracker", type: "iOS app / Christian", mark: "PT", copy: "An app for breeders to track puppy weights, growth, feeding and litter data, with authentication and database access controls.", tech: "React · JavaScript · Supabase · SQL", href: "https://apps.apple.com/dk/app/puppy-tracker/id6765893506", link: "View on the App Store" },
+  { name: "Can My Dog Eat This?", type: "iOS app / Christian", mark: "?", copy: "An offline food reference for dog owners, with search in five languages, typo handling and automated tests.", tech: "React · TypeScript · Capacitor · Vitest", href: "https://apps.apple.com/dk/app/can-my-dog-eat-this/id6797205829", link: "View on the App Store" },
+  { name: "JobWatcher", type: "Web application / Tobias", mark: "JW", copy: "A job-search application combining authentication, web search and structured AI outputs to help find relevant opportunities.", tech: "Supabase · OpenAI API · Web search", href: "https://jobwatcherai.com/", link: "Visit JobWatcher" },
 ];
 
 export default function Home() {
@@ -97,7 +102,7 @@ export default function Home() {
         </Link>
         <nav className="consulting-nav" aria-label="Primary navigation">
           <a href="#services">What we do</a>
-          <a href="#working-together">How we work</a>
+          <a href="#work">Our experience</a>
           <a href="#people">Who we are</a>
         </nav>
         <a className="consulting-header-contact" href="#contact">Let’s talk</a>
@@ -106,30 +111,31 @@ export default function Home() {
       <main id="main-content" tabIndex={-1}>
         <section className="consulting-hero consulting-container" aria-labelledby="public-title">
           <div className="consulting-hero-copy">
-            <p className="consulting-eyebrow"><span className="consulting-dot" /> Independent software consultants</p>
+            <p className="consulting-eyebrow"><span className="consulting-dot" /> Available for new assignments</p>
             <h1 id="public-title">Better software.<br /><span>Built together.</span></h1>
             <p className="consulting-lead">
-              Hands-on expertise in development, quality engineering and modernization.
-              We join your team or take on a focused project to help your software move forward.
+              Independent .NET and Java consultants in Copenhagen.
+              We help teams build, integrate and modernise business-critical software —
+              as part of your team or through a clearly scoped project.
             </p>
             <div className="consulting-hero-actions">
-              <a className="consulting-button" href={contactHref}>Let’s talk about your project</a>
-              <a className="consulting-text-link" href="#services">Explore our services</a>
+              <a className="consulting-button" href="#contact">Let’s talk about your project</a>
+              <a className="consulting-text-link" href="#work">Explore our experience</a>
             </div>
-            <p className="consulting-location">Based in Copenhagen, Denmark</p>
+            <p className="consulting-location">Remote or on-site in Copenhagen · Work with one or both of us</p>
           </div>
         </section>
 
         <div className="consulting-capabilities consulting-container" aria-label="Technology and capabilities">
-          <span>Built on practical experience</span>
-          <ul>{[".NET", "Java", "Python", "Quality engineering", "Migration", "CI/CD"].map((item) => <li key={item}>{item}</li>)}</ul>
+          <span>Technologies we work with</span>
+          <ul>{[".NET / C#", "Java", "SQL", "React", "Python", "CI/CD"].map((item) => <li key={item}>{item}</li>)}</ul>
         </div>
 
         <section className="consulting-services consulting-band" id="services" aria-labelledby="services-title">
           <div className="consulting-container consulting-section">
             <div className="consulting-section-heading">
               <p className="consulting-eyebrow">01 / What we do</p>
-              <div><h2 id="services-title">The right expertise.<br />Where you need it.</h2><p>From writing the code to making sure it works, we help with the parts of software delivery that need attention.</p></div>
+              <div><h2 id="services-title">Build. Test.<br />Move forward.</h2><p>Hands-on development and testing for teams with existing systems, new features or a migration ahead.</p></div>
             </div>
             <div className="consulting-service-grid">
               {services.map((service) => (
@@ -145,19 +151,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="consulting-working" id="working-together" aria-labelledby="working-title">
+        <section id="work" className="consulting-work" aria-labelledby="work-title">
           <div className="consulting-container consulting-section">
             <div className="consulting-section-heading">
-              <p className="consulting-eyebrow">02 / How we work</p>
-              <div><h2 id="working-title">Your team. Your challenge.<br />A way forward, together.</h2><p>Some teams need an extra colleague. Others need a specific piece of work delivered. We can help with both.</p></div>
+              <p className="consulting-eyebrow">02 / Our experience</p>
+              <div><h2 id="work-title">Experience with systems<br />people depend on.</h2><p>Before starting Wivosoft, we worked as consultants at Netcompany. These examples come from those roles.</p></div>
             </div>
-            <div className="consulting-engagements">
-              <article><span className="consulting-engagement-label">Alongside your team</span><h3>A consultant in your corner.</h3><p>We join your existing team, contribute to your day-to-day work, and bring experience where it is needed. Development, quality engineering, or support for a change already underway.</p><span className="consulting-engagement-detail">Team support · Ongoing collaboration</span></article>
-              <article><span className="consulting-engagement-label">A defined piece of work</span><h3>A focused project, clearly scoped.</h3><p>We agree on the challenge, the deliverables and the responsibilities. Whether it is a migration, test automation or an application improvement, the work starts with a shared understanding.</p><span className="consulting-engagement-detail">Scoped projects · Agreed deliverables</span></article>
+            <div className="consulting-experience-grid">
+              <article><p className="consulting-card-label">Public sector / Christian</p><h3>Application upgrades & integrations</h3><p>Developed and maintained services for Erhvervsstyrelsen and Domstolsstyrelsen. Work included .NET and Grails upgrades, GraphQL data integrations and more robust message delivery, supported by automated tests.</p><p className="consulting-work-tech">C# · .NET · Java · Groovy · SQL Server</p></article>
+              <article><p className="consulting-card-label">Insurance / Tobias</p><h3>Data migration & technical leadership</h3><p>Worked on insurance data migrations for Topdanmark and If. At If, led technical and team work on an agriculture migration to Guidewire, including migration architecture, test environments and data verification.</p><p className="consulting-work-tech">Java · Spring Boot · SQL · Guidewire</p></article>
             </div>
-            <div className="consulting-first-steps">
-              <p>Getting started<br /><span>A conversation comes first.</span></p>
-              <ol>{firstSteps.map((step, index) => <li key={step.title}><span className="consulting-step-number">0{index + 1}</span><div><h3>{step.title}</h3><p>{step.copy}</p></div></li>)}</ol>
+            <div className="consulting-projects-intro"><h3>Products we’ve built ourselves</h3><p>Independent projects developed alongside our previous roles, including two apps shipped to the App Store.</p></div>
+            <div className="consulting-project-grid">
+              {projects.map((project) => <article className="consulting-project" key={project.name}><div className="consulting-project-mark" aria-hidden="true">{project.mark}</div><p className="consulting-card-label">{project.type}</p><h3>{project.name}</h3><p>{project.copy}</p><p className="consulting-work-tech">{project.tech}</p><a className="consulting-text-link" href={project.href} target="_blank" rel="noopener noreferrer">{project.link}<span className="sr-only"> (opens in a new tab)</span></a></article>)}
             </div>
           </div>
         </section>
@@ -166,7 +172,7 @@ export default function Home() {
           <div className="consulting-container consulting-section">
             <div className="consulting-section-heading">
               <p className="consulting-eyebrow">03 / Who we are</p>
-              <div><h2 id="people-title">A small team.<br />A shared background.</h2><p>We both started in quality engineering at Netcompany before moving into software development. That shared experience shapes how we build, test and improve software. At Wivosoft, you work directly with us.</p></div>
+              <div><h2 id="people-title">Meet the people<br />doing the work.</h2><p>We’re Christian and Tobias, two independent consultants building Wivosoft. We both started in quality engineering at Netcompany before moving into development. You work directly with us.</p></div>
             </div>
             <div className="consulting-founder-grid">
               {founders.map((founder) => (
@@ -180,24 +186,35 @@ export default function Home() {
                       unoptimized
                     />
                   </div>
-                  <div><p className="consulting-founder-label">Co-founder / Consultant</p><h3>{founder.name}</h3><p className="consulting-founder-focus">{founder.focus}</p><p>{founder.copy}</p></div>
+                  <div><p className="consulting-founder-label">Co-founder / Consultant</p><h3>{founder.name}</h3><p className="consulting-founder-focus">{founder.focus}</p><p className="consulting-founder-bio">{founder.copy}</p><div className="consulting-founder-links"><a href={founder.cv} download>Download CV <span className="sr-only">for {founder.name}</span><span aria-hidden="true">↗</span></a><a href={founder.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn<span className="sr-only"> for {founder.name} (opens in a new tab)</span><span aria-hidden="true">↗</span></a></div></div>
                 </article>
               ))}
             </div>
-            <div className="consulting-principle"><p>Engineering experience from both sides of the release.<br /><span>We think about how software is built, how it is tested, and what happens when it reaches the people who rely on it.</span></p></div>
+            <p className="consulting-background-note">We also share an engineering background from DTU, where we worked extensively with Python.</p>
+          </div>
+        </section>
+
+        <section className="consulting-working" id="working-together" aria-labelledby="working-title">
+          <div className="consulting-container consulting-section">
+            <div className="consulting-section-heading"><p className="consulting-eyebrow">04 / Working together</p><div><h2 id="working-title">An extra colleague.<br />Or a project partner.</h2><p>Available for remote assignments or on-site work in Copenhagen. Bring in one of us or work with both.</p></div></div>
+            <div className="consulting-engagements">
+              <article><span className="consulting-engagement-label">Alongside your team</span><h3>Add experience where you need it.</h3><p>We join your team’s existing tools and routines, contributing to development, testing or a change already underway.</p></article>
+              <article><span className="consulting-engagement-label">A defined piece of work</span><h3>Agree on a scope. Then get to work.</h3><p>We talk through the problem, agree on deliverables and responsibilities, and share progress and knowledge as we go.</p></article>
+            </div>
+            <a className="consulting-text-link consulting-working-cta" href="#contact">Tell us what you need</a>
           </div>
         </section>
 
         <section className="consulting-contact consulting-container" id="contact" aria-labelledby="contact-title">
-          <div><p className="consulting-eyebrow">04 / Let’s talk</p><h2 id="contact-title">What are you<br /><span>working on?</span></h2></div>
-          <div className="consulting-contact-copy"><p>Tell us a little about your project, your team and the kind of help you need. We’ll start with a conversation about whether we’re a good fit.</p><a className="consulting-contact-email" href={contactHref}>hello@wivosoft.dk</a><p className="consulting-contact-hint">A few lines about the challenge and your timing is a good start.</p></div>
+          <div className="consulting-contact-copy"><p className="consulting-eyebrow">05 / Let’s talk</p><h2 id="contact-title">What are you<br /><span>working on?</span></h2><p className="consulting-contact-intro">Tell us where you could use a hand. We’ll start with a conversation about the work and whether we’re a good fit.</p><a className="consulting-contact-email" href={contactHref}>hello@wivosoft.dk</a><p className="consulting-contact-hint">Prefer to write in Danish? Det gør du bare.</p></div>
+          <ContactForm />
         </section>
       </main>
 
       <footer className="consulting-footer">
         <div className="consulting-container">
-          <div className="consulting-footer-top"><Link href="/" aria-label="Wivosoft home"><Brand light /></Link><p>Software consulting.<br />A human approach.</p><a href="#top">Back to top</a></div>
-          <div className="consulting-footer-bottom"><span>© {new Date().getFullYear()} Wivosoft</span><span>Copenhagen, Denmark</span><a href="mailto:hello@wivosoft.dk">hello@wivosoft.dk</a></div>
+          <div className="consulting-footer-top"><Link href="/" aria-label="Wivosoft home"><Brand light /></Link><p>Independent software consultants.<br />Copenhagen, Denmark.</p><a href="#top">Back to top</a></div>
+          <div className="consulting-footer-bottom"><span>© {new Date().getFullYear()} Wivosoft</span><Link href="/privacy">Privacy notice</Link><a href="mailto:hello@wivosoft.dk">hello@wivosoft.dk</a></div>
         </div>
       </footer>
     </div>
