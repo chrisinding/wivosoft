@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import Brand from "./Brand";
 
 const title = "Wivosoft — Software Consulting";
@@ -61,16 +60,16 @@ const services = [
 
 const founders = [
   {
-    name: "Christian",
+    name: "Christian Volck",
     initials: "C",
-    focus: "Quality Engineering & Software Development",
-    copy: "Bringing development and technical testing together, with a focus on test automation, performance and dependable delivery.",
+    focus: "Software Development & Quality Engineering",
+    copy: "Project experience with Groovy, .NET and C#, including framework upgrades and modernization of existing applications.",
   },
   {
-    name: "Tobias",
+    name: "Tobias Wiik",
     initials: "T",
-    focus: "Software Modernization & Migration",
-    copy: "Moving business-critical software forward, with a focus on existing applications, migration and the behavior that needs to be preserved.",
+    focus: "Software Development & Quality Engineering",
+    copy: "Project experience with Java, application development and migration, helping existing systems and their data move forward.",
   },
 ];
 
@@ -79,10 +78,6 @@ const firstSteps = [
   { title: "Agree on the work", copy: "Together, we define the scope, responsibilities and a practical way to get started." },
   { title: "Get to work", copy: "We work closely with you, share progress and hand over knowledge as we go." },
 ];
-
-function Arrow({ diagonal = false }: { diagonal?: boolean }) {
-  return <span aria-hidden="true">{diagonal ? "↗" : "→"}</span>;
-}
 
 export default function Home() {
   return (
@@ -96,9 +91,9 @@ export default function Home() {
         <nav className="consulting-nav" aria-label="Primary navigation">
           <a href="#services">What we do</a>
           <a href="#working-together">How we work</a>
-          <a href="#people">The people</a>
+          <a href="#people">Who we are</a>
         </nav>
-        <a className="consulting-header-contact" href="#contact">Let’s talk <Arrow diagonal /></a>
+        <a className="consulting-header-contact" href="#contact">Let’s talk</a>
       </header>
 
       <main id="main-content" tabIndex={-1}>
@@ -111,19 +106,11 @@ export default function Home() {
               We join your team or take on a focused project to help your software move forward.
             </p>
             <div className="consulting-hero-actions">
-              <a className="consulting-button" href={contactHref}>Let’s talk about your project <Arrow diagonal /></a>
-              <a className="consulting-text-link" href="#services">Explore our services <Arrow /></a>
+              <a className="consulting-button" href={contactHref}>Let’s talk about your project</a>
+              <a className="consulting-text-link" href="#services">Explore our services</a>
             </div>
             <p className="consulting-location">Based in Copenhagen, Denmark</p>
           </div>
-          <aside className="consulting-hero-note" aria-label="Our approach combines development and quality engineering">
-            <div className="consulting-hero-note-top"><span>The Wivosoft approach</span><span aria-hidden="true">↗</span></div>
-            <div className="consulting-monogram" aria-hidden="true">
-              <Image src="/wivosoft-brand.png" alt="" width={1536} height={1024} unoptimized />
-            </div>
-            <p>Two perspectives.<br />One stronger release.</p>
-            <div className="consulting-disciplines"><span>Development</span><span aria-hidden="true">+</span><span>Quality engineering</span></div>
-          </aside>
         </section>
 
         <div className="consulting-capabilities consulting-container" aria-label="Technology and capabilities">
@@ -131,28 +118,30 @@ export default function Home() {
           <ul>{[".NET", "Java", "Python", "Test automation", "Migration", "CI/CD"].map((item) => <li key={item}>{item}</li>)}</ul>
         </div>
 
-        <section className="consulting-services consulting-container consulting-section" id="services" aria-labelledby="services-title">
-          <div className="consulting-section-heading">
-            <p className="consulting-eyebrow">01 / What we do</p>
-            <div><h2 id="services-title">The right expertise.<br />Where you need it.</h2><p>From writing the code to making sure it works, we help with the parts of software delivery that need attention.</p></div>
-          </div>
-          <div className="consulting-service-grid">
-            {services.map((service) => (
-              <article className="consulting-service" key={service.number}>
-                <div className="consulting-service-top"><span>{service.number}</span><Arrow diagonal /></div>
-                <h3>{service.title}</h3>
-                <p>{service.copy}</p>
-                <p className="consulting-service-capabilities">{service.capabilities}</p>
-                <div className="consulting-service-situation"><span aria-hidden="true">↳</span>{service.situation}</div>
-              </article>
-            ))}
+        <section className="consulting-services consulting-band" id="services" aria-labelledby="services-title">
+          <div className="consulting-container consulting-section">
+            <div className="consulting-section-heading">
+              <p className="consulting-eyebrow">01 / What we do</p>
+              <div><h2 id="services-title">The right expertise.<br />Where you need it.</h2><p>From writing the code to making sure it works, we help with the parts of software delivery that need attention.</p></div>
+            </div>
+            <div className="consulting-service-grid">
+              {services.map((service) => (
+                <article className="consulting-service" key={service.number}>
+                  <div className="consulting-service-top"><span>{service.number}</span></div>
+                  <h3>{service.title}</h3>
+                  <p>{service.copy}</p>
+                  <p className="consulting-service-capabilities">{service.capabilities}</p>
+                  <div className="consulting-service-situation">{service.situation}</div>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
         <section className="consulting-working" id="working-together" aria-labelledby="working-title">
           <div className="consulting-container consulting-section">
             <div className="consulting-section-heading">
-              <p className="consulting-eyebrow">02 / Working together</p>
+              <p className="consulting-eyebrow">02 / How we work</p>
               <div><h2 id="working-title">Your team. Your challenge.<br />A way forward, together.</h2><p>Some teams need an extra colleague. Others need a specific piece of work delivered. We can help with both.</p></div>
             </div>
             <div className="consulting-engagements">
@@ -166,31 +155,34 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="consulting-people consulting-container consulting-section" id="people" aria-labelledby="people-title">
-          <div className="consulting-section-heading">
-            <p className="consulting-eyebrow">03 / The people</p>
-            <div><h2 id="people-title">A small team.<br />A direct connection.</h2><p>Wivosoft is founded by two software consultants with backgrounds across development, technical testing and business-critical systems. You work directly with the people doing the work.</p></div>
+        <section className="consulting-people consulting-band" id="people" aria-labelledby="people-title">
+          <div className="consulting-container consulting-section">
+            <div className="consulting-section-heading">
+              <p className="consulting-eyebrow">03 / Who we are</p>
+              <div><h2 id="people-title">A small team.<br />A shared background.</h2><p>We both started in quality engineering at Netcompany before moving into software development. That shared experience shapes how we build, test and improve software. At Wivosoft, you work directly with us.</p></div>
+            </div>
+            <div className="consulting-founder-grid">
+              {founders.map((founder) => (
+                <article className="consulting-founder" key={founder.name}>
+                  <span className="consulting-founder-initial" aria-hidden="true">{founder.initials}</span>
+                  <div><p className="consulting-founder-label">Co-founder / Consultant</p><h3>{founder.name}</h3><p className="consulting-founder-focus">{founder.focus}</p><p>{founder.copy}</p></div>
+                </article>
+              ))}
+            </div>
+            <div className="consulting-principle"><p>Engineering experience from both sides of the release.<br /><span>We think about how software is built, how it is tested, and what happens when it reaches the people who rely on it.</span></p></div>
+            <p className="consulting-name-note">Wivosoft takes its name from Wiik and Volck.</p>
           </div>
-          <div className="consulting-founder-grid">
-            {founders.map((founder) => (
-              <article className="consulting-founder" key={founder.name}>
-                <span className="consulting-founder-initial" aria-hidden="true">{founder.initials}</span>
-                <div><p className="consulting-founder-label">Co-founder / Consultant</p><h3>{founder.name}</h3><p className="consulting-founder-focus">{founder.focus}</p><p>{founder.copy}</p></div>
-              </article>
-            ))}
-          </div>
-          <div className="consulting-principle"><span aria-hidden="true">↗</span><p>Engineering experience from both sides of the release.<br /><span>We think about how software is built, how it is tested, and what happens when it reaches the people who rely on it.</span></p></div>
         </section>
 
         <section className="consulting-contact consulting-container" id="contact" aria-labelledby="contact-title">
           <div><p className="consulting-eyebrow">04 / Let’s talk</p><h2 id="contact-title">What are you<br /><span>working on?</span></h2></div>
-          <div className="consulting-contact-copy"><p>Tell us a little about your project, your team and the kind of help you need. We’ll start with a conversation about whether we’re a good fit.</p><a className="consulting-contact-email" href={contactHref}>hello@wivosoft.dk <Arrow diagonal /></a><p className="consulting-contact-hint">A few lines about the challenge and your timing is a good start.</p></div>
+          <div className="consulting-contact-copy"><p>Tell us a little about your project, your team and the kind of help you need. We’ll start with a conversation about whether we’re a good fit.</p><a className="consulting-contact-email" href={contactHref}>hello@wivosoft.dk</a><p className="consulting-contact-hint">A few lines about the challenge and your timing is a good start.</p></div>
         </section>
       </main>
 
       <footer className="consulting-footer">
         <div className="consulting-container">
-          <div className="consulting-footer-top"><Link href="/" aria-label="Wivosoft home"><Brand light /></Link><p>Software consulting.<br />A human approach.</p><a href="#top">Back to top <span aria-hidden="true">↑</span></a></div>
+          <div className="consulting-footer-top"><Link href="/" aria-label="Wivosoft home"><Brand light /></Link><p>Software consulting.<br />A human approach.</p><a href="#top">Back to top</a></div>
           <div className="consulting-footer-bottom"><span>© {new Date().getFullYear()} Wivosoft</span><span>Copenhagen, Denmark</span><a href="mailto:hello@wivosoft.dk">hello@wivosoft.dk</a></div>
         </div>
       </footer>

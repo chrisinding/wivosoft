@@ -44,8 +44,12 @@ test("server-renders the public Wivosoft homepage", async () => {
   assert.match(html, /A consultant in your corner/);
   assert.match(html, /A focused project, clearly scoped/);
   assert.match(html, /Engineering experience from both sides of the release/);
-  assert.match(html, /Quality Engineering &amp; Software Development/);
-  assert.match(html, /Software Modernization &amp; Migration/);
+  assert.match(html, /Christian Volck/);
+  assert.match(html, /Tobias Wiik/);
+  assert.match(html, /Software Development &amp; Quality Engineering/);
+  assert.match(html, /Who we are/);
+  assert.match(html, /Netcompany/);
+  assert.match(html, /Groovy, .NET and C#/);
   assert.match(html, /mailto:hello@wivosoft\.dk/);
   assert.match(html, /og\.png/);
   assert.match(html, /wivosoft-icon\.png/);
