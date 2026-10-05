@@ -49,10 +49,13 @@ test("server-renders the public Wivosoft homepage", async () => {
   assert.match(html, /Software Development &amp; Quality Engineering/);
   assert.match(html, /Who we are/);
   assert.match(html, /Netcompany/);
-  assert.match(html, /Groovy, .NET and C#/);
+  assert.match(html, /Nearly five years of software development experience/);
+  assert.match(html, /christian-volck\.webp/);
+  assert.match(html, /tobias-wiik\.webp/);
   assert.match(html, /mailto:hello@wivosoft\.dk/);
   assert.match(html, /og\.png/);
-  assert.match(html, /wivosoft-icon\.png/);
+  assert.match(html, /wivosoft-icon-v2\.png/);
+  assert.match(html, /wivosoft-favicon\.svg/);
   assert.match(html, /wivosoft-brand\.png/);
   for (const anchor of ["main-content", "services", "working-together", "people", "contact", "top"]) {
     assert.match(html, new RegExp(`id="${anchor}"`));
@@ -99,13 +102,17 @@ test("removes starter-only assets and keeps required production dependencies", a
   assert.doesNotMatch(page, /WivosoftSite/);
   assert.match(demoPage, /WivosoftSite/);
   assert.match(layout, /metadataBase/);
-  assert.match(layout, /wivosoft-icon\.png/);
+  assert.match(layout, /wivosoft-icon-v2\.png/);
 
   await assert.rejects(
     access(new URL("../app/_sites-preview/SkeletonPreview.tsx", import.meta.url)),
   );
   await access(new URL("../public/wivosoft-logo.png", import.meta.url));
   await access(new URL("../public/wivosoft-icon.png", import.meta.url));
+  await access(new URL("../public/wivosoft-icon-v2.png", import.meta.url));
+  await access(new URL("../public/wivosoft-favicon.svg", import.meta.url));
+  await access(new URL("../public/christian-volck.webp", import.meta.url));
+  await access(new URL("../public/tobias-wiik.webp", import.meta.url));
   await access(new URL("../public/og.png", import.meta.url));
   await access(new URL("../public/wivosoft-brand.png", import.meta.url));
 });

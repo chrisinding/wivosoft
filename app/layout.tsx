@@ -32,13 +32,18 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/wivosoft-icon.png",
+        url: "/wivosoft-favicon.svg",
+        type: "image/svg+xml",
+        sizes: "any",
+      },
+      {
+        url: "/wivosoft-icon-v2.png",
         type: "image/png",
         sizes: "512x512",
       },
     ],
-    shortcut: "/wivosoft-icon.png",
-    apple: "/wivosoft-icon.png",
+    shortcut: "/wivosoft-favicon.svg",
+    apple: "/wivosoft-icon-v2.png",
   },
 };
 

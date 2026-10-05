@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import Brand from "./Brand";
 
 const title = "Wivosoft — Software Consulting";
@@ -38,22 +39,22 @@ const services = [
   {
     number: "01",
     title: "Software development",
-    copy: "Extra engineering capacity, a new feature, or a system that needs attention. We work with your team to build software that is easier to maintain and move forward.",
+    copy: "A new feature, a system that needs attention, or extra engineering capacity. We can deliver a defined project or work alongside your team to build software that is easier to maintain and move forward.",
     capabilities: ".NET · Java · Python · Integrations",
-    situation: "When your team needs another pair of hands.",
+    situation: "When you need a project delivered or extra hands.",
   },
   {
     number: "02",
     title: "Quality engineering",
-    copy: "Make quality part of delivery. We build automated tests, investigate performance, and improve release pipelines so your team can make changes with more confidence.",
+    copy: "Build confidence in the code you depend on. We use automated tests, performance testing and quality checks to catch bugs early and keep important behavior working as your software changes.",
     capabilities: "Test automation · Performance testing · CI/CD",
-    situation: "When releases take more effort than they should.",
+    situation: "When you need code you can rely on.",
   },
   {
     number: "03",
     title: "Modernization & migration",
     copy: "Move an existing application or its data to a better foundation. We help you understand what matters, plan the change, and verify the behavior and data along the way.",
-    capabilities: "Legacy applications · Data migration · Verification",
+    capabilities: "Legacy applications · Data migration",
     situation: "When your current system is holding you back.",
   },
 ];
@@ -61,15 +62,21 @@ const services = [
 const founders = [
   {
     name: "Christian Volck",
-    initials: "C",
+    photo: "/christian-volck.webp",
+    photoWidth: 1065,
+    photoHeight: 1477,
+    photoClass: "consulting-portrait-christian",
     focus: "Software Development & Quality Engineering",
-    copy: "Project experience with Groovy, .NET and C#, including framework upgrades and modernization of existing applications.",
+    copy: "Nearly five years of software development experience on business-critical systems, across consulting assignments involving new development, maintenance and bug fixing.",
   },
   {
     name: "Tobias Wiik",
-    initials: "T",
+    photo: "/tobias-wiik.webp",
+    photoWidth: 1024,
+    photoHeight: 1536,
+    photoClass: "consulting-portrait-tobias",
     focus: "Software Development & Quality Engineering",
-    copy: "Project experience with Java, application development and migration, helping existing systems and their data move forward.",
+    copy: "Nearly five years of software development experience on business-critical systems, across consulting assignments involving new development, maintenance and bug fixing.",
   },
 ];
 
@@ -164,13 +171,20 @@ export default function Home() {
             <div className="consulting-founder-grid">
               {founders.map((founder) => (
                 <article className="consulting-founder" key={founder.name}>
-                  <span className="consulting-founder-initial" aria-hidden="true">{founder.initials}</span>
+                  <div className={`consulting-founder-photo ${founder.photoClass}`}>
+                    <Image
+                      src={founder.photo}
+                      alt={founder.name}
+                      width={founder.photoWidth}
+                      height={founder.photoHeight}
+                      unoptimized
+                    />
+                  </div>
                   <div><p className="consulting-founder-label">Co-founder / Consultant</p><h3>{founder.name}</h3><p className="consulting-founder-focus">{founder.focus}</p><p>{founder.copy}</p></div>
                 </article>
               ))}
             </div>
             <div className="consulting-principle"><p>Engineering experience from both sides of the release.<br /><span>We think about how software is built, how it is tested, and what happens when it reaches the people who rely on it.</span></p></div>
-            <p className="consulting-name-note">Wivosoft takes its name from Wiik and Volck.</p>
           </div>
         </section>
 
