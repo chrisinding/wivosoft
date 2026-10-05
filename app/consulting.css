@@ -467,7 +467,13 @@ body:has(.consulting-site) {
 }
 
 .consulting-founder-photo img {
+  /* Alpha masks replace only the backdrop; the original photos stay intact. */
   height: auto;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-mode: alpha;
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
   max-width: none;
   position: absolute;
 }
@@ -475,12 +481,16 @@ body:has(.consulting-site) {
 /* Match face size and eye level while retaining each original portrait. */
 .consulting-portrait-christian img {
   left: -9%;
+  -webkit-mask-image: url("/christian-volck-mask.png");
+  mask-image: url("/christian-volck-mask.png");
   top: -12%;
   width: 118%;
 }
 
 .consulting-portrait-tobias img {
   left: 0;
+  -webkit-mask-image: url("/tobias-wiik-mask.png");
+  mask-image: url("/tobias-wiik-mask.png");
   top: -20%;
   width: 100%;
 }
