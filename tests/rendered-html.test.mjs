@@ -113,6 +113,8 @@ test("removes starter-only assets and keeps required production dependencies", a
   await access(new URL("../public/wivosoft-favicon.svg", import.meta.url));
   await access(new URL("../public/christian-volck.webp", import.meta.url));
   await access(new URL("../public/tobias-wiik.webp", import.meta.url));
+  await access(new URL("../public/christian-volck-mask.png", import.meta.url));
+  await access(new URL("../public/tobias-wiik-mask.png", import.meta.url));
   await access(new URL("../public/og.png", import.meta.url));
   await access(new URL("../public/wivosoft-brand.png", import.meta.url));
 });

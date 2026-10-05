@@ -122,7 +122,7 @@ export default function Home() {
 
         <div className="consulting-capabilities consulting-container" aria-label="Technology and capabilities">
           <span>Built on practical experience</span>
-          <ul>{[".NET", "Java", "Python", "Test automation", "Migration", "CI/CD"].map((item) => <li key={item}>{item}</li>)}</ul>
+          <ul>{[".NET", "Java", "Python", "Quality engineering", "Migration", "CI/CD"].map((item) => <li key={item}>{item}</li>)}</ul>
         </div>
 
         <section className="consulting-services consulting-band" id="services" aria-labelledby="services-title">
